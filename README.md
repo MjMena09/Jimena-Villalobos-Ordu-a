@@ -2,10 +2,10 @@
  
 Portafolio personal de proyectos audiovisuales y artes en general.
 
-Sobre mí 🖌️
+Sobre mí 🖌️                                                                                                                                                  
 Soy una artista plastica y audiovisual enfocada en la narrativa visual, ritmo y estética cinematográfica.
 
-Habilidades 🎬
+Habilidades 🎬 
 - Narrativa cinematográfica aplicada a proyectos visuales y audiovisuales
 - Desarrollo de concept art y diseño de personajes
 - Animación stop motion
@@ -15,6 +15,6 @@ Habilidades 🎬
 - Dirección de arte y estética visual
 
 📩 Contacto
-Gmail: zephyr.jvo@gmail.com
+Gmail: zephyr.jvo@gmail.com                                                                                                                                   
 Instagram: @zephyrssart
 
