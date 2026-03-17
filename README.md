@@ -1,10 +1,6 @@
  Jimena-Villalobos-Orduna - 🎨 Portfolio
  
-Portafolio personal de proyectos audiovisuales y artes en general.
-
-Sobre mí 🖌️                                                                                                                                                  
-Soy una artista plastica y audiovisual enfocada en la narrativa visual, ritmo y estética cinematográfica.
-
+Portafolio personal de proyectos audiovisuales y artisticos.
 Habilidades 🎬 
 - Narrativa cinematográfica aplicada a proyectos visuales y audiovisuales
 - Desarrollo de concept art y diseño de personajes
