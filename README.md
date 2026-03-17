@@ -1,2 +1,2 @@
-# Jimena-Villalobos-Ordu-a
+# Jimena-Villalobos-Orduna
 Portafolio 
