@@ -14,7 +14,7 @@ Habilidades 🎬
 - Exploración de temáticas psicológicas a través del lenguaje visual y sonoro
 - Dirección de arte y estética visual
 
-📩 Contacto
+📩 Contacto                                                                                                                                                  
 Gmail: zephyr.jvo@gmail.com                                                                                                                                   
 Instagram: @zephyrssart
 
