@@ -1,6 +1,6 @@
  Jimena-Villalobos-Orduna - 🎨 Portfolio
  
-Portafolio personal de proyectos audiovisuales y artisticos.
+Portafolio personal de proyectos audiovisuales y artisticos.                                                                                                  
 Habilidades 🎬 
 - Narrativa cinematográfica aplicada a proyectos visuales y audiovisuales
 - Desarrollo de concept art y diseño de personajes
