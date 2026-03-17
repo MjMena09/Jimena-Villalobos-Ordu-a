@@ -53,17 +53,12 @@ nav a {
 
 .hero h1 {
   font-size: 60px;
-  margin: 0;
-}
-
-.hero p {
-  opacity: 0.8;
 }
 
 /* SECCIONES */
 .section {
   padding: 80px 40px;
-  max-width: 1000px;
+  max-width: 1100px;
   margin: auto;
 }
 
@@ -72,13 +67,14 @@ nav a {
   padding-left: 10px;
 }
 
-/* PROYECTOS */
+/* GRID PROYECTOS */
 .projects {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
   gap: 20px;
 }
 
+/* CARD */
 .card {
   background: #111;
   border-radius: 10px;
@@ -100,7 +96,6 @@ nav a {
 .overlay {
   position: absolute;
   top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.7);
@@ -116,17 +111,11 @@ nav a {
   opacity: 1;
 }
 
-.card p {
-  padding: 10px;
-}
-
 /* MODAL */
 .modal {
   display: none;
   position: fixed;
   z-index: 2000;
-  left: 0;
-  top: 0;
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.9);
@@ -134,11 +123,23 @@ nav a {
 
 .modal-content {
   background: #111;
-  margin: 10% auto;
+  margin: 5% auto;
   padding: 20px;
-  width: 80%;
-  max-width: 600px;
+  width: 90%;
+  max-width: 800px;
   border-radius: 10px;
+}
+
+.modal-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px,1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.modal-images img {
+  width: 100%;
+  border-radius: 5px;
 }
 
 .close {
@@ -158,7 +159,7 @@ nav a {
     <span onclick="closeModal()" class="close">&times;</span>
     <h2 id="modal-title"></h2>
     <p id="modal-text"></p>
-    <img id="modal-img" src="" style="width:100%; margin-top:10px;">
+    <div class="modal-images" id="modal-images"></div>
   </div>
 </div>
 
@@ -186,14 +187,35 @@ nav a {
 <section id="proyectos" class="section">
   <h2>Trabajos</h2>
   <div class="projects">
-    
-    <div class="card" onclick="openModal('proyecto1')">
+
+    <div class="card" onclick="openModal('1')">
       <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7">
-      
-      <div class="overlay">
-        <h3>Proyecto 1</h3>
-        <p>Ver más</p>
-      </div>
+      <div class="overlay"><h3>Proyecto 1</h3></div>
+    </div>
+
+    <div class="card" onclick="openModal('2')">
+      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+      <div class="overlay"><h3>Proyecto 2</h3></div>
+    </div>
+
+    <div class="card" onclick="openModal('3')">
+      <img src="https://images.unsplash.com/photo-1495567720989-cebdbdd97913">
+      <div class="overlay"><h3>Proyecto 3</h3></div>
+    </div>
+
+    <div class="card" onclick="openModal('4')">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e">
+      <div class="overlay"><h3>Proyecto 4</h3></div>
+    </div>
+
+    <div class="card" onclick="openModal('5')">
+      <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba">
+      <div class="overlay"><h3>Proyecto 5</h3></div>
+    </div>
+
+    <div class="card" onclick="openModal('6')">
+      <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470">
+      <div class="overlay"><h3>Proyecto 6</h3></div>
     </div>
 
   </div>
@@ -210,16 +232,27 @@ nav a {
 </footer>
 
 <script>
-function openModal(proyecto) {
+function openModal(id) {
   const title = document.getElementById("modal-title");
   const text = document.getElementById("modal-text");
-  const img = document.getElementById("modal-img");
+  const container = document.getElementById("modal-images");
 
-  if (proyecto === "proyecto1") {
-    title.innerText = "Proyecto 1";
-    text.innerText = "Descripción más detallada del proyecto, narrativa, estilo, etc.";
-    img.src = "https://images.unsplash.com/photo-1492724441997-5dc865305da7";
-  }
+  container.innerHTML = "";
+
+  title.innerText = "Proyecto " + id;
+  text.innerText = "Aquí puedes poner descripción más extensa del proyecto, narrativa, referencias, etc.";
+
+  let images = [
+    "https://images.unsplash.com/photo-1492724441997-5dc865305da7",
+    "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+    "https://images.unsplash.com/photo-1495567720989-cebdbdd97913"
+  ];
+
+  images.forEach(src => {
+    let img = document.createElement("img");
+    img.src = src;
+    container.appendChild(img);
+  });
 
   document.getElementById("modal").style.display = "block";
 }
