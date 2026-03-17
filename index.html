@@ -7,15 +7,19 @@
 
 <style>
 
-/* COLOR GLOBAL */
+/* 🎨 PALETA */
 :root {
   --amarillo: #FFD34D;
+  --fondo: #0a0a0a;
+  --card: #141414;
+  --glow: rgba(255, 211, 77, 0.3);
 }
 
+/* GENERAL */
 body {
   margin: 0;
-  font-family: 'Arial', sans-serif;
-  background: #0a0a0a;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top, #111 0%, #000 100%);
   color: white;
 }
 
@@ -23,8 +27,8 @@ body {
 nav {
   position: fixed;
   width: 100%;
-  background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(10px);
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(12px);
   display: flex;
   justify-content: space-between;
   padding: 15px 30px;
@@ -33,12 +37,18 @@ nav {
 
 nav h2 {
   color: var(--amarillo);
+  letter-spacing: 1px;
 }
 
 nav a {
   color: white;
-  text-decoration: none;
   margin-left: 20px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: var(--amarillo);
 }
 
 /* HERO */
@@ -49,47 +59,71 @@ nav a {
   justify-content: center;
   align-items: center;
   text-align: center;
+  position: relative;
+}
+
+/* overlay oscuro + glow */
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+}
+
+.hero div {
+  position: relative;
+  z-index: 2;
 }
 
 .hero h1 {
   font-size: 60px;
+  text-shadow: 0 0 20px var(--glow);
+}
+
+.hero p {
+  opacity: 0.8;
 }
 
 /* SECCIONES */
 .section {
-  padding: 80px 40px;
+  padding: 90px 40px;
   max-width: 1100px;
   margin: auto;
 }
 
 .section h2 {
   border-left: 4px solid var(--amarillo);
-  padding-left: 10px;
+  padding-left: 12px;
 }
 
-/* GRID PROYECTOS */
+/* GRID */
 .projects {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-  gap: 20px;
+  gap: 25px;
 }
 
 /* CARD */
 .card {
-  background: #111;
-  border-radius: 10px;
+  background: var(--card);
+  border-radius: 15px;
   overflow: hidden;
-  transition: 0.3s;
+  transition: 0.4s;
   position: relative;
   cursor: pointer;
+  box-shadow: 0 0 0 transparent;
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 0 25px var(--glow);
 }
 
 .card img {
   width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
 
 /* OVERLAY */
@@ -98,12 +132,12 @@ nav a {
   top: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.7);
-  opacity: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.9));
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
+  padding: 15px;
   flex-direction: column;
+  opacity: 0;
   transition: 0.3s;
 }
 
@@ -124,28 +158,49 @@ nav a {
 .modal-content {
   background: #111;
   margin: 5% auto;
-  padding: 20px;
+  padding: 25px;
   width: 90%;
-  max-width: 800px;
-  border-radius: 10px;
+  max-width: 850px;
+  border-radius: 15px;
+  animation: fade 0.3s ease;
 }
 
+/* animación */
+@keyframes fade {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* GALERÍA */
 .modal-images {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px,1fr));
   gap: 10px;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 .modal-images img {
   width: 100%;
-  border-radius: 5px;
+  border-radius: 8px;
+  transition: 0.3s;
 }
 
+.modal-images img:hover {
+  transform: scale(1.05);
+}
+
+/* CLOSE */
 .close {
   float: right;
   font-size: 25px;
   cursor: pointer;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 20px;
+  opacity: 0.5;
 }
 
 </style>
@@ -159,7 +214,7 @@ nav a {
     <span onclick="closeModal()" class="close">&times;</span>
     <h2 id="modal-title"></h2>
     <p id="modal-text"></p>
-    <div class="modal-images" id="modal-images"></div>
+    <div id="modal-images" class="modal-images"></div>
   </div>
 </div>
 
@@ -181,11 +236,12 @@ nav a {
 
 <section id="sobre" class="section">
   <h2>Sobre mí</h2>
-  <p>Soy una creadora audiovisual enfocado en narrativa visual, ritmo y encuadres cinematográficos.</p>
+  <p>Soy una creadora audiovisual enfocada en narrativa visual, ritmo y encuadres cinematográficos, con interés en animación y estética experimental.</p>
 </section>
 
 <section id="proyectos" class="section">
   <h2>Trabajos</h2>
+
   <div class="projects">
 
     <div class="card" onclick="openModal('1')">
@@ -240,7 +296,7 @@ function openModal(id) {
   container.innerHTML = "";
 
   title.innerText = "Proyecto " + id;
-  text.innerText = "Aquí puedes poner descripción más extensa del proyecto, narrativa, referencias, etc.";
+  text.innerText = "Exploración visual enfocada en animación, estilo gráfico y narrativa estética.";
 
   let images = [
     "https://images.unsplash.com/photo-1492724441997-5dc865305da7",
