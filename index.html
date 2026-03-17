@@ -6,6 +6,12 @@
 <title>Portafolio</title>
 
 <style>
+
+/* COLOR GLOBAL */
+:root {
+  --amarillo: #FFD34D;
+}
+
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;
@@ -26,7 +32,7 @@ nav {
 }
 
 nav h2 {
-  color: #ff3c3c;
+  color: var(--amarillo);
 }
 
 nav a {
@@ -62,7 +68,7 @@ nav a {
 }
 
 .section h2 {
-  border-left: 4px solid #ff3c3c;
+  border-left: 4px solid var(--amarillo);
   padding-left: 10px;
 }
 
@@ -78,6 +84,8 @@ nav a {
   border-radius: 10px;
   overflow: hidden;
   transition: 0.3s;
+  position: relative;
+  cursor: pointer;
 }
 
 .card:hover {
@@ -88,26 +96,11 @@ nav a {
   width: 100%;
 }
 
-.card p {
-  padding: 10px;
-}
-
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 20px;
-  opacity: 0.5;
-}
-</style>
-/* OVERLAY HOVER */
-.card {
-  position: relative;
-  cursor: pointer;
-}
-
+/* OVERLAY */
 .overlay {
   position: absolute;
-  bottom: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.7);
@@ -122,6 +115,12 @@ footer {
 .card:hover .overlay {
   opacity: 1;
 }
+
+.card p {
+  padding: 10px;
+}
+
+/* MODAL */
 .modal {
   display: none;
   position: fixed;
@@ -147,7 +146,13 @@ footer {
   font-size: 25px;
   cursor: pointer;
 }
+
+</style>
 </head>
+
+<body>
+
+<!-- MODAL -->
 <div id="modal" class="modal">
   <div class="modal-content">
     <span onclick="closeModal()" class="close">&times;</span>
@@ -156,26 +161,6 @@ footer {
     <img id="modal-img" src="" style="width:100%; margin-top:10px;">
   </div>
 </div>
-<script>
-function openModal(proyecto) {
-  const title = document.getElementById("modal-title");
-  const text = document.getElementById("modal-text");
-  const img = document.getElementById("modal-img");
-
-  if (proyecto === "proyecto1") {
-    title.innerText = "Proyecto 1";
-    text.innerText = "Descripción más detallada del proyecto, narrativa, estilo, etc.";
-    img.src = "https://images.unsplash.com/photo-1492724441997-5dc865305da7";
-  }
-
-  document.getElementById("modal").style.display = "block";
-}
-
-function closeModal() {
-  document.getElementById("modal").style.display = "none";
-}
-</script>
-<body>
 
 <nav>
   <h2>Mi Portafolio</h2>
@@ -202,16 +187,14 @@ function closeModal() {
   <h2>Trabajos</h2>
   <div class="projects">
     
-<div class="card" onclick="openModal('proyecto1')">
-  <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7">
-  
-  <div class="overlay">
-    <h3>Proyecto 1</h3>
-    <p>Ver más</p>
-  </div>
-</div>
-
-
+    <div class="card" onclick="openModal('proyecto1')">
+      <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7">
+      
+      <div class="overlay">
+        <h3>Proyecto 1</h3>
+        <p>Ver más</p>
+      </div>
+    </div>
 
   </div>
 </section>
@@ -225,6 +208,26 @@ function closeModal() {
 <footer>
   © 2026 - Jimena Villalobos Orduña
 </footer>
+
+<script>
+function openModal(proyecto) {
+  const title = document.getElementById("modal-title");
+  const text = document.getElementById("modal-text");
+  const img = document.getElementById("modal-img");
+
+  if (proyecto === "proyecto1") {
+    title.innerText = "Proyecto 1";
+    text.innerText = "Descripción más detallada del proyecto, narrativa, estilo, etc.";
+    img.src = "https://images.unsplash.com/photo-1492724441997-5dc865305da7";
+  }
+
+  document.getElementById("modal").style.display = "block";
+}
+
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
+}
+</script>
 
 </body>
 </html>
