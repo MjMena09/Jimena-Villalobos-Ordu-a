@@ -12,13 +12,13 @@
   --amarillo: #FFD34D;
   --fondo: #0a0a0a;
   --card: #141414;
-  --glow: rgba(255, 211, 77, 0.3);
+  --texto-sec: #aaa;
 }
 
 /* GENERAL */
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Inter', sans-serif;
   background: radial-gradient(circle at top, #111 0%, #000 100%);
   color: white;
 }
@@ -44,17 +44,27 @@ nav a {
   color: white;
   margin-left: 20px;
   text-decoration: none;
+  position: relative;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background: var(--amarillo);
+  left: 0;
+  bottom: -3px;
   transition: 0.3s;
 }
 
-nav a:hover {
-  color: var(--amarillo);
+nav a:hover::after {
+  width: 100%;
 }
 
 /* HERO */
 .hero {
   height: 100vh;
-  background: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee') center/cover;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,32 +72,25 @@ nav a:hover {
   position: relative;
 }
 
-/* overlay oscuro + glow */
-.hero::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-}
-
-.hero div {
-  position: relative;
-  z-index: 2;
-}
-
 .hero h1 {
   font-size: 60px;
-  text-shadow: 0 0 20px var(--glow);
+  animation: fadeUp 1s ease;
 }
 
 .hero p {
-  opacity: 0.8;
+  opacity: 0.7;
+  animation: fadeUp 1.3s ease;
+}
+
+/* ANIMACIÓN */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* SECCIONES */
 .section {
-  padding: 90px 40px;
+  padding: 100px 40px;
   max-width: 1100px;
   margin: auto;
 }
@@ -95,13 +98,14 @@ nav a:hover {
 .section h2 {
   border-left: 4px solid var(--amarillo);
   padding-left: 12px;
+  margin-bottom: 40px;
 }
 
 /* GRID */
 .projects {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+  gap: 30px;
 }
 
 /* CARD */
@@ -109,15 +113,14 @@ nav a:hover {
   background: var(--card);
   border-radius: 15px;
   overflow: hidden;
+  cursor: pointer;
   transition: 0.4s;
   position: relative;
-  cursor: pointer;
-  box-shadow: 0 0 0 transparent;
 }
 
 .card:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 0 25px var(--glow);
+  transform: translateY(-10px);
+  box-shadow: 0 10px 40px rgba(255,211,77,0.15);
 }
 
 .card img {
@@ -129,15 +132,12 @@ nav a:hover {
 /* OVERLAY */
 .overlay {
   position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: linear-gradient(transparent, rgba(0,0,0,0.9));
-  display: flex;
-  justify-content: flex-end;
-  padding: 15px;
-  flex-direction: column;
   opacity: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 15px;
   transition: 0.3s;
 }
 
@@ -149,10 +149,9 @@ nav a:hover {
 .modal {
   display: none;
   position: fixed;
-  z-index: 2000;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: rgba(0,0,0,0.9);
+  backdrop-filter: blur(10px);
 }
 
 .modal-content {
@@ -160,21 +159,15 @@ nav a:hover {
   margin: 5% auto;
   padding: 25px;
   width: 90%;
-  max-width: 850px;
+  max-width: 900px;
   border-radius: 15px;
-  animation: fade 0.3s ease;
-}
-
-/* animación */
-@keyframes fade {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+  animation: fadeUp 0.3s ease;
 }
 
 /* GALERÍA */
 .modal-images {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
   gap: 10px;
   margin-top: 15px;
 }
@@ -189,6 +182,11 @@ nav a:hover {
   transform: scale(1.05);
 }
 
+/* TEXTO */
+.modal p {
+  color: var(--texto-sec);
+}
+
 /* CLOSE */
 .close {
   float: right;
@@ -199,8 +197,8 @@ nav a:hover {
 /* FOOTER */
 footer {
   text-align: center;
-  padding: 20px;
-  opacity: 0.5;
+  padding: 30px;
+  opacity: 0.4;
 }
 
 </style>
@@ -208,7 +206,6 @@ footer {
 
 <body>
 
-<!-- MODAL -->
 <div id="modal" class="modal">
   <div class="modal-content">
     <span onclick="closeModal()" class="close">&times;</span>
@@ -230,50 +227,25 @@ footer {
 <section class="hero">
   <div>
     <h1>Jimena Villalobos</h1>
-    <p>Artista Plastica / Audiovisual</p>
+    <p>Artista Visual / Animación</p>
   </div>
 </section>
 
 <section id="sobre" class="section">
   <h2>Sobre mí</h2>
-  <p>Soy una creadora audiovisual enfocada en narrativa visual, ritmo y encuadres cinematográficos, con interés en animación y estética experimental.</p>
+  <p>Enfocada en animación, exploración visual y narrativa estética contemporánea.</p>
 </section>
 
 <section id="proyectos" class="section">
   <h2>Trabajos</h2>
 
   <div class="projects">
-
-    <div class="card" onclick="openModal('1')">
-      <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7">
-      <div class="overlay"><h3>Proyecto 1</h3></div>
-    </div>
-
-    <div class="card" onclick="openModal('2')">
-      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
-      <div class="overlay"><h3>Proyecto 2</h3></div>
-    </div>
-
-    <div class="card" onclick="openModal('3')">
-      <img src="https://images.unsplash.com/photo-1495567720989-cebdbdd97913">
-      <div class="overlay"><h3>Proyecto 3</h3></div>
-    </div>
-
-    <div class="card" onclick="openModal('4')">
-      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e">
-      <div class="overlay"><h3>Proyecto 4</h3></div>
-    </div>
-
-    <div class="card" onclick="openModal('5')">
-      <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba">
-      <div class="overlay"><h3>Proyecto 5</h3></div>
-    </div>
-
-    <div class="card" onclick="openModal('6')">
-      <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470">
-      <div class="overlay"><h3>Proyecto 6</h3></div>
-    </div>
-
+    <div class="card" onclick="openModal('1')"><img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7"><div class="overlay"><h3>Proyecto 1</h3></div></div>
+    <div class="card" onclick="openModal('2')"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"><div class="overlay"><h3>Proyecto 2</h3></div></div>
+    <div class="card" onclick="openModal('3')"><img src="https://images.unsplash.com/photo-1495567720989-cebdbdd97913"><div class="overlay"><h3>Proyecto 3</h3></div></div>
+    <div class="card" onclick="openModal('4')"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"><div class="overlay"><h3>Proyecto 4</h3></div></div>
+    <div class="card" onclick="openModal('5')"><img src="https://images.unsplash.com/photo-1519681393784-d120267933ba"><div class="overlay"><h3>Proyecto 5</h3></div></div>
+    <div class="card" onclick="openModal('6')"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470"><div class="overlay"><h3>Proyecto 6</h3></div></div>
   </div>
 </section>
 
@@ -296,7 +268,7 @@ function openModal(id) {
   container.innerHTML = "";
 
   title.innerText = "Proyecto " + id;
-  text.innerText = "Exploración visual enfocada en animación, estilo gráfico y narrativa estética.";
+  text.innerText = "Exploración visual centrada en animación, estilo gráfico y narrativa contemporánea.";
 
   let images = [
     "https://images.unsplash.com/photo-1492724441997-5dc865305da7",
