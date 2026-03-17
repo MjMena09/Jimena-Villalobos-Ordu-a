@@ -2,6 +2,12 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+
+<!-- 🔥 ANTI CACHE -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portafolio</title>
 
@@ -70,6 +76,7 @@ nav a:hover::after {
   align-items: center;
   text-align: center;
   position: relative;
+  background: url('https://images.unsplash.com/photo-1492724441997-5dc865305da7') center/cover;
 }
 
 .hero h1 {
@@ -119,8 +126,8 @@ nav a:hover::after {
 }
 
 .card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 40px rgba(255,211,77,0.15);
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 15px 50px rgba(255,211,77,0.25);
 }
 
 .card img {
@@ -133,11 +140,11 @@ nav a:hover::after {
 .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(transparent, rgba(0,0,0,0.9));
+  background: linear-gradient(transparent, rgba(0,0,0,0.95));
   opacity: 0;
   display: flex;
   align-items: flex-end;
-  padding: 15px;
+  padding: 20px;
   transition: 0.3s;
 }
 
@@ -152,11 +159,12 @@ nav a:hover::after {
   inset: 0;
   background: rgba(0,0,0,0.9);
   backdrop-filter: blur(10px);
+  justify-content: center;
+  align-items: center;
 }
 
 .modal-content {
   background: #111;
-  margin: 5% auto;
   padding: 25px;
   width: 90%;
   max-width: 900px;
@@ -206,6 +214,7 @@ footer {
 
 <body>
 
+<!-- MODAL -->
 <div id="modal" class="modal">
   <div class="modal-content">
     <span onclick="closeModal()" class="close">&times;</span>
@@ -215,6 +224,7 @@ footer {
   </div>
 </div>
 
+<!-- NAV -->
 <nav>
   <h2>Mi Portafolio</h2>
   <div>
@@ -224,6 +234,7 @@ footer {
   </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
   <div>
     <h1>Jimena Villalobos</h1>
@@ -231,11 +242,13 @@ footer {
   </div>
 </section>
 
+<!-- SOBRE -->
 <section id="sobre" class="section">
   <h2>Sobre mí</h2>
   <p>Enfocada en animación, exploración visual y narrativa estética contemporánea.</p>
 </section>
 
+<!-- PROYECTOS -->
 <section id="proyectos" class="section">
   <h2>Trabajos</h2>
 
@@ -249,16 +262,19 @@ footer {
   </div>
 </section>
 
+<!-- CONTACTO -->
 <section id="contacto" class="section">
   <h2>Contacto</h2>
   <p>Gmail: zephyr.jvo@gmail.com</p>
   <p>Instagram: @zephyrssart</p>
 </section>
 
+<!-- FOOTER -->
 <footer>
   © 2026 - Jimena Villalobos Orduña
 </footer>
 
+<!-- SCRIPT -->
 <script>
 function openModal(id) {
   const title = document.getElementById("modal-title");
@@ -282,7 +298,7 @@ function openModal(id) {
     container.appendChild(img);
   });
 
-  document.getElementById("modal").style.display = "block";
+  document.getElementById("modal").style.display = "flex";
 }
 
 function closeModal() {
